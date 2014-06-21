@@ -51,8 +51,8 @@ for t = RandIdx
     S = sparse(row_v, col_v,value_v,size_v(1),size_v(2));
     
     D = diag(sum(S));
-    Rx = Rx + im*(eye(size(S,1)))*im';
-%    Rx = Rx + im*(D-S-eye(size(S,1))/lamda)*im'; % sum of all the input images' covariance matrix
+%    Rx = Rx + im*(eye(size(S,1)))*im';
+    Rx = Rx + im*(D-S-eye(size(S,1))/lamda)*im'; % sum of all the input images' covariance matrix
 end
 Rx = Rx/(NumRSamples*size(im,2));
 [E D] = eig(Rx);
