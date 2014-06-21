@@ -31,7 +31,7 @@ load('./YALE_B/YaleB_32x32.mat');
 %fea = fea/256;
 PCANet.NumStages = 2;
 PCANet.PatchSize = 7;
-PCANet.NumFilters = [8 8];
+PCANet.NumFilters = [8 4];
 PCANet.HistBlockSize = [8 6]; 
 PCANet.BlkOverLapRatio = 0.5;
 PCANet.Lamda=0.8;
