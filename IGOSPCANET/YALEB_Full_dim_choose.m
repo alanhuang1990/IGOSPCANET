@@ -34,7 +34,7 @@ PCANet.PatchSize = 7;
 PCANet.NumFilters = [8 4];
 PCANet.HistBlockSize = [8 6]; 
 PCANet.BlkOverLapRatio = 0.5;
-PCANet.Lamda=0.8;
+PCANet.Lamda=9;
 
 t_num = [5 10 20 30 40 50];
 
