@@ -34,11 +34,11 @@ PCANet.PatchSize = 7;
 PCANet.NumFilters = [8 4];
 PCANet.HistBlockSize = [8 6]; 
 PCANet.BlkOverLapRatio = 0.5;
-PCANet.Lamda=9;
+PCANet.Lamda=1;
 
 t_num = [5 10 20 30 40 50];
 
-for itr_train = 1:length(t_num)
+for itr_train = 5:length(t_num)
     train_num = t_num(itr_train);
 
     F_acc = [];
@@ -100,7 +100,7 @@ for itr_train = 1:length(t_num)
         
         max_dim = (min(size(ftrain))-2);
         fprintf('\nPerform PCA on image feature...');
-        PCA_V_max = PCA(ftrain', max_dim,1,100000);
+        PCA_V_max = PCA(ftrain', max_dim,1,10000);
         
         
         
