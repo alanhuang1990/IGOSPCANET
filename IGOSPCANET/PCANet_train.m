@@ -52,11 +52,27 @@ for stage = 1:PCANet.NumStages
             PCANet.PatchSize, PCANet.NumFilters(stage), V{stage});  
     end
 end
-f = [];
-BlkIdx = [];
-
-
-
+if IdtExt == 1 % enable feature extraction
+    %display('PCANet training feature extraction...') 
+    
+    f = cell(NumImg,1); % compute the PCANet training feature one by one 
+    
+    for idx = 1:NumImg
+        if 0==mod(idx,100); display(['Extracting PCANet feasture of the ' num2str(idx) 'th training sample...']); end
+        OutImgIndex = ImgIdx==idx; % select feature maps corresponding to image "idx" (outputs of the-last-but-one PCA filter bank) 
+        
+        [OutImg_i ImgIdx_i] = PCA_output(OutImg(OutImgIndex), ones(sum(OutImgIndex),1),...
+            PCANet.PatchSize, PCANet.NumFilters(end), V{end});  % compute the last PCA outputs of image "idx"
+        
+        [f{idx} BlkIdx] = HashingHist(PCANet,ImgIdx_i,OutImg_i); % compute the feature of image "idx"
+        OutImg(OutImgIndex) = cell(sum(OutImgIndex),1); 
+    end
+    f = [f{:}];
+    
+else  % disable feature extraction
+    f = [];
+    BlkIdx = [];
+end
 
 
 
